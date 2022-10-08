@@ -1,7 +1,8 @@
-.hide {
-    display: none;
-}
-
-.timer {
-    display: none;
+.choice {
+    color: red;
+    list-style-type: none;
+    border: 5px solid blue;
+    border-radius: 10px;
+    margin: 10px;
+    width: max-content;
 }

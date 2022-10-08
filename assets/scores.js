@@ -1,4 +1,4 @@
-#scores.js
+/*
 
 function printHighscores() {
   // either get scores from localstorage or set to empty array
@@ -29,3 +29,5 @@ document.getElementById('clear').onclick = clearHighscores;
 
 // run function when page loads
 printHighscores();
+
+*/

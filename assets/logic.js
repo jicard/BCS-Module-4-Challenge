@@ -1,7 +1,7 @@
 //Define "questions" variable, give each question a title string, choices array, and answer string
 var questions = [
     {
-      title: 'Commonly used data types DO NOT include:',
+      title: 'All of these are example of data types EXCEPT:',
       choices: ['strings', 'booleans', 'alerts', 'numbers'],
       answer: 'alerts',
     },
@@ -27,10 +27,9 @@ var questions = [
     },
   ];
   
-// variables to keep track of quiz state
+//Start quiz and first question, set time limit to 15 seconds per question (60 total for 4 questions)
 var currentQuestionIndex = 0;
 var time = questions.length * 15;
-var timerId;
 
 // variables to reference DOM elements
 var questionsEl = document.getElementById("questions");
@@ -42,45 +41,42 @@ var initialsEl = document.getElementById('initials');
 var feedbackEl = document.getElementById('feedback');
 var startScreen = document.getElementById("start-screen");
 var viewHigh = document.getElementById("viewhigh");
+var timerDiv = document.getElementById("timerdiv");
+var allDone = document.getElementById("end-screen");
 
+window.onload = function () {
+    timerDiv.style.display = "none";
+    allDone.style.display = "none";
+    var img = document.createElement("img");
+    img.src = "https://www.freecodecamp.org/news/content/images/2019/07/best-js-meme-to-date-2.png";
+    var div = document.getElementById("start-screen");
+    div.appendChild(img);
+}
 
+//Event listener for Start Quiz button
+startBtn.addEventListener("click", startQuiz)
+
+//Function to begin quiz, hide intro page 
 function startQuiz() { 
-viewHigh.style.display = "none";    
-startScreen.style.display = "none";
-questionsEl.style.display = "block";
-
-var sec = 60;
-var timer = setInterval(function(){
-    time = '00:' + sec;
-    sec--;
-    if (sec <= 0) {
-        clearInterval(timer);
-    }
-}, 1000);
+    viewHigh.style.display = "none";    
+    startScreen.style.display = "none";
+    timerDiv.style.display = "block";
     getQuestion();
 }
 
-startBtn.addEventListener("click", startQuiz)
-
-
-function getQuestion() { //this function is going to get the data from the questions array
-    // get current question object from array
+function getQuestion() {
     var currentQuestion = questions[currentQuestionIndex]
-
-    // update title with current question
     var titleEl = document.getElementById('question-title');
     titleEl.textContent = currentQuestion.title;
-
-    // clear out any old question choices
-    choicesEl.innerHTML = ''; //Study this later
-
-    // create a for loop that creates the choice elements
+    choicesEl.innerHTML = ''; 
+    var ul = document.createElement("ul");
+    choicesEl.appendChild(ul);
+    console.log(currentQuestion.choices[0][i]);
     for (var i = 0; i < currentQuestion.choices.length; i++) {
-        // create new button for each choice
-        //.createElement
-        //.setAttribute (set a class="choice")
-        //.textContent
-        //.appendChild
+        var li = document.createElement("li");
+        li.setAttribute("class", "choice");
+        ul.appendChild(li)
+        li.textContent = (currentQuestion.choices[i]);
     }
 }
 
