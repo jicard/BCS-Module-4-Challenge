@@ -9,26 +9,26 @@
   </head>
 
   <body>
-    <div class="scores" id="viewhigh"><a href="highscores.html">View Highscores</a></div>
+    <div class="scores" id="scores"><a href="highscores.html">View Scores</a></div>
 
-    <div id="timerdiv">Time: <span id="time">60</span></div>
+    <div id="timerdiv">Time: <span id="time"></span></div>
 
     <div id="start-screen" class="start">
         <h1>Coding Quiz Challenge</h1>
         <p>
-          Click the "Start Quiz" button to begin. You have 60 seconds to complete the quiz, but you'll lose time for wrong answers!
+          Click the "Start Quiz" button to begin.
         </p>
         <button id="start">Start Quiz</button>
         <br>
         <br>
     </div>
 
-    <div id="questions" class="hide">
+    <div id="questions" class="questions">
         <h2 id="question-title"></h2>
         <div id="choices" class="choices"></div>
     </div>
 
-    <div id="end-screen" class="hide">
+    <div id="end-screen" class="end-screen">
         <h2>All done!</h2>
         <p>Your final score is <span id="final-score"></span>.</p>
         <p>

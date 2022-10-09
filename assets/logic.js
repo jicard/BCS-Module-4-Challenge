@@ -29,7 +29,8 @@ var questions = [
   
 //Start quiz and first question, set time limit to 15 seconds per question (60 total for 4 questions)
 var currentQuestionIndex = 0;
-var time = questions.length * 15;
+var time = questions.length * 1;
+var score = 0;
 
 // variables to reference DOM elements
 var questionsEl = document.getElementById("questions");
@@ -40,17 +41,19 @@ var startBtn = document.getElementById('start');
 var initialsEl = document.getElementById('initials');
 var feedbackEl = document.getElementById('feedback');
 var startScreen = document.getElementById("start-screen");
-var viewHigh = document.getElementById("viewhigh");
+var scores = document.getElementById("scores");
 var timerDiv = document.getElementById("timerdiv");
+var timecount = document.getElementById("time");
 var allDone = document.getElementById("end-screen");
 
 window.onload = function () {
     timerDiv.style.display = "none";
     allDone.style.display = "none";
-    var img = document.createElement("img");
-    img.src = "https://www.freecodecamp.org/news/content/images/2019/07/best-js-meme-to-date-2.png";
-    var div = document.getElementById("start-screen");
-    div.appendChild(img);
+    //Remove these comments for a laugh
+    //var img = document.createElement("img");
+    //img.src = "https://www.freecodecamp.org/news/content/images/2019/07/best-js-meme-to-date-2.png";
+    //var div = document.getElementById("start-screen");
+    //div.appendChild(img);
 }
 
 //Event listener for Start Quiz button
@@ -58,88 +61,73 @@ startBtn.addEventListener("click", startQuiz)
 
 //Function to begin quiz, hide intro page 
 function startQuiz() { 
-    viewHigh.style.display = "none";    
+    scores.style.display = "none";    
     startScreen.style.display = "none";
     timerDiv.style.display = "block";
-    getQuestion();
+    getQuestion()
+    clockTick();
 }
 
 function getQuestion() {
-    var currentQuestion = questions[currentQuestionIndex]
+    if (currentQuestionIndex === questions.length) {
+        quizEnd();
+        return null;
+    }
+    var currentQuestion = questions[currentQuestionIndex];
     var titleEl = document.getElementById('question-title');
     titleEl.textContent = currentQuestion.title;
     choicesEl.innerHTML = ''; 
     var ul = document.createElement("ul");
     choicesEl.appendChild(ul);
-    console.log(currentQuestion.choices[0][i]);
     for (var i = 0; i < currentQuestion.choices.length; i++) {
         var li = document.createElement("li");
         li.setAttribute("class", "choice");
         ul.appendChild(li)
         li.textContent = (currentQuestion.choices[i]);
+        if (currentQuestion.choices[i] === currentQuestion.answer) {
+            li.setAttribute("class", "correct")
+        } else {
+            li.setAttribute("class", "incorrect")
+        }
     }
 }
+
+//questionClick function will be called if an element in the div with "choices" class is clicked
+choicesEl.onclick = questionClick;
 
 function questionClick(event) {
     var buttonEl = event.target;
-
-    // if the clicked element is not a choice button, do nothing.
-    if (!buttonEl.matches('.choice')) {
-        return;
-    }
-
-    // check if user guessed right or wrong
-    if (true) { //replace true with a conditional statement that checks if the clicked choice button's value is the same as the questions[currentQuestionIndex]'s answer
-        //incorrect answer scenario
-
-        // penalize time
-        // display new time on page
-    } else {
-        //correct scenario
-
-        // move to next question
-    }
-    // flash right/wrong feedback on page
-
-    // move to next question
-    currentQuestionIndex++;
-
-    // check if we've run out of questions
-    if (time <= 0 || currentQuestionIndex === questions.length) {
-        quizEnd();
-    } else {
-        getQuestion();
-    }
+    if (buttonEl.matches(".incorrect")) {
+        confirm("That is incorrect! You have been docked 10 seconds.");
+        currentQuestionIndex++;
+    } else if (buttonEl.matches(".correct")) {
+        currentQuestionIndex++;
+        score++;
+    }  
+    getQuestion();
 }
 
 function quizEnd() {
-    // stop timer
-    clearInterval(timerId);
-
-    // show end screen
-    var endScreenEl = document.getElementById('end-screen');
-    endScreenEl.removeAttribute('class');
-
-    // show final score
+    questionsEl.style.display = "none";
+    timerDiv.style.display = "none";
+    allDone.style.display = "block";
     var finalScoreEl = document.getElementById('final-score');
-    finalScoreEl.textContent = time;
-
-    // hide questions section
-    questionsEl.setAttribute('class', 'hide');
+    finalScoreEl.textContent = score+"/"+questions.length;
 }
 
 function clockTick() {
-    // update time
+    setInterval(function countDown(){
+    timecount.textContent = time;
     time--;
-    timerEl.textContent = time;
-
-    // check if user ran out of time
-    if (time <= 0) {
+    if (time <= -1) {
         quizEnd();
+        console.log("time is up");
+        clearInterval(time);
     }
+    },1000);
 }
 
-
+/*
 function saveHighscore() {
     // get value of input box
     var initials = initialsEl.value.trim();
@@ -174,8 +162,8 @@ submitBtn.onclick = saveHighscore;
 
 // user clicks button to start quiz
 startBtn.onclick = startQuiz;
-
 // user clicks on element containing choices
-choicesEl.onclick = questionClick;
 
-initialsEl.onkeyup = checkForEnter;
+
+//initialsEl.onkeyup = checkForEnter;
+*/
