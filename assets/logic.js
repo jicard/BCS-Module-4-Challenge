@@ -29,7 +29,7 @@ var questions = [
   
 //Start quiz and first question, set time limit to 15 seconds per question (60 total for 4 questions)
 var currentQuestionIndex = 0;
-var time = questions.length * 1;
+var time = questions.length * 15;
 var score = 0;
 
 // variables to reference DOM elements
@@ -100,6 +100,7 @@ function questionClick(event) {
     if (buttonEl.matches(".incorrect")) {
         confirm("That is incorrect! You have been docked 10 seconds.");
         currentQuestionIndex++;
+        time-=10;
     } else if (buttonEl.matches(".correct")) {
         currentQuestionIndex++;
         score++;
@@ -122,12 +123,11 @@ function clockTick() {
     if (time <= -1) {
         quizEnd();
         console.log("time is up");
-        clearInterval(time);
     }
     },1000);
 }
 
-/*
+
 function saveHighscore() {
     // get value of input box
     var initials = initialsEl.value.trim();
@@ -166,4 +166,3 @@ startBtn.onclick = startQuiz;
 
 
 //initialsEl.onkeyup = checkForEnter;
-*/
