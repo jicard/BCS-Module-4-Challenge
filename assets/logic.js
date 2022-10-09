@@ -1,4 +1,4 @@
-//Define "questions" variable, give each question a title string, choices array, and answer string
+//Define "questions" variable, give each question a title string, choices array, and answer string (each question is an object)
 var questions = [
     {
       title: 'All of these are example of data types EXCEPT:',
@@ -27,7 +27,7 @@ var questions = [
     },
   ];
   
-//Start quiz and first question, set time limit to 15 seconds per question (60 total for 4 questions)
+//Start quiz at question 1, set 15 seconds per question, set starting score to 0
 var currentQuestionIndex = 0;
 var time = questions.length * 15;
 var score = 0;
@@ -47,6 +47,7 @@ var timecount = document.getElementById("time");
 var allDone = document.getElementById("end-screen");
 var highScores = document.getElementById("scorediv");
 
+//Set what to show on initial page load
 window.onload = function onload() {
     timerDiv.style.display = "none";
     allDone.style.display = "none";
@@ -61,7 +62,7 @@ window.onload = function onload() {
 //Event listener for Start Quiz button
 startBtn.addEventListener("click", startQuiz)
 
-//Function to begin quiz, hide intro page 
+//Function to hide home page, show timer, render the first question, and start the timer
 function startQuiz() { 
     scoreboard.style.display = "none";    
     startScreen.style.display = "none";
@@ -70,6 +71,7 @@ function startQuiz() {
     clockTick();
 }
 
+//Checks question index to decide whether to end quiz or give a question, renders question and defines each choice as correct/incorrect
 function getQuestion() {
     if (currentQuestionIndex === questions.length) {
         quizEnd();

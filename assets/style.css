@@ -1,18 +1,117 @@
 .correct {
-    color: blue;
+    background-color: white; 
+    color: black; 
+    border: 2px solid blue;
+    font-style: italic;
     list-style-type: none;
-    border: 5px solid red;
-    border-radius: 10px;
     margin: 10px;
-    width: max-content; 
+    width: 100px;
+    text-align: center;
+    font-family: monospace;
+}
+
+.correct:hover {
+    background-color: blue;
+    color: white;
 }
 
 .incorrect {
-    color: green;
+    background-color: white; 
+    color: black; 
+    border: 2px solid blue;
+    font-style: italic;
     list-style-type: none;
-    border: 5px solid yellow;
-    border-radius: 10px;
     margin: 10px;
-    width: max-content; 
+    width: 100px;
+    text-align: center;
+    font-family: monospace;
 }
 
+.incorrect:hover {
+    background-color: blue;
+    color: white;
+}
+
+.start {
+    text-align: center;
+    font-family: monospace;
+    font-size: larger;
+}
+
+.scores a {
+    text-decoration: none !important;
+    font-family: monospace;
+    font-style: italic;
+    font-size: larger;
+    background-color: blue;
+    color: white;
+    border: 5px solid blue;
+    border-radius: 10px;
+}
+
+.startbutton {
+    background-color: white; 
+    color: black; 
+    border: 2px solid blue;
+    font-style: italic;
+}
+  
+.startbutton:hover {
+    background-color: blue;
+    color: white;
+}
+
+#question-title {
+    font-family: monospace;
+    font-size: x-large;
+}
+ #timerdiv {
+    font-family: monospace;
+    font-size: larger;
+}
+
+.end-screen {
+    text-align: center;
+    font-family: monospace;
+}
+
+#submit {
+    background-color: white; 
+    color: black; 
+    border: 2px solid blue;
+    font-style: italic;
+}
+
+#submit:hover {
+    background-color: blue;
+    color: white;
+}
+
+#goback {
+    background-color: white; 
+    color: black; 
+    border: 2px solid blue;
+    font-style: italic;
+}
+
+#goback:hover {
+    background-color: blue;
+    color: white;
+}
+
+#clear {
+    background-color: white; 
+    color: black; 
+    border: 2px solid blue;
+    font-style: italic;
+}
+
+#clear:hover {
+    background-color: blue;
+    color: white;
+}
+
+.wrapper {
+    text-align: center;
+    font-family: monospace;
+}
