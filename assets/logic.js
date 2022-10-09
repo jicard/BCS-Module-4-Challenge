@@ -129,25 +129,20 @@ function clockTick() {
 }
 
 function saveHighscore() {
-    if (initialsEl === "") {
+    if (initialsEl.value === "") {
         alert("Submit initials pls")
     } else {
         console.log("fuck this");
-    }
-
-
-        //JSON.parse
-        // get saved scores from localstorage (highscores), or if not any, set to empty array
-        
-
-        // format new score object for current user
-        
-
-        // save to localstorage
-        
-
-        // redirect to next page
+        var savedHighscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
+        var currentuser = initialsEl.value.trim();
+        var currentscore = {
+            name: currentuser,
+            score: score
+        };
         window.location.href = 'scores.html';
     }
+    savedHighscores.push(currentscore);
+    localStorage.setItem("savedHighscores", JSON.stringify(savedHighscores));
+}
 
 
