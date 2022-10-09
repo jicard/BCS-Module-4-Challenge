@@ -115,3 +115,7 @@
     text-align: center;
     font-family: monospace;
 }
+
+#highscores {
+    list-style-type: none;
+}
