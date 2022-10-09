@@ -41,14 +41,16 @@ var startBtn = document.getElementById('start');
 var initialsEl = document.getElementById('initials');
 var feedbackEl = document.getElementById('feedback');
 var startScreen = document.getElementById("start-screen");
-var scores = document.getElementById("scores");
+var scoreboard = document.getElementById("scores");
 var timerDiv = document.getElementById("timerdiv");
 var timecount = document.getElementById("time");
 var allDone = document.getElementById("end-screen");
+var highScores = document.getElementById("scorediv");
 
-window.onload = function () {
+window.onload = function onload() {
     timerDiv.style.display = "none";
     allDone.style.display = "none";
+    highScores.style.display = "none";
     //Remove these comments for a laugh
     //var img = document.createElement("img");
     //img.src = "https://www.freecodecamp.org/news/content/images/2019/07/best-js-meme-to-date-2.png";
@@ -61,7 +63,7 @@ startBtn.addEventListener("click", startQuiz)
 
 //Function to begin quiz, hide intro page 
 function startQuiz() { 
-    scores.style.display = "none";    
+    scoreboard.style.display = "none";    
     startScreen.style.display = "none";
     timerDiv.style.display = "block";
     getQuestion()
@@ -94,7 +96,6 @@ function getQuestion() {
 
 //questionClick function will be called if an element in the div with "choices" class is clicked
 choicesEl.onclick = questionClick;
-
 function questionClick(event) {
     var buttonEl = event.target;
     if (buttonEl.matches(".incorrect")) {
@@ -108,12 +109,13 @@ function questionClick(event) {
     getQuestion();
 }
 
+var finalScoreEl = document.getElementById('final-score');
 function quizEnd() {
     questionsEl.style.display = "none";
     timerDiv.style.display = "none";
     allDone.style.display = "block";
-    var finalScoreEl = document.getElementById('final-score');
     finalScoreEl.textContent = score+"/"+questions.length;
+    submitBtn.addEventListener('click', saveHighscore)
 }
 
 function clockTick() {
@@ -122,18 +124,17 @@ function clockTick() {
     time--;
     if (time <= -1) {
         quizEnd();
-        console.log("time is up");
     }
     },1000);
 }
 
-
 function saveHighscore() {
-    // get value of input box
-    var initials = initialsEl.value.trim();
+    if (initialsEl === "") {
+        alert("Submit initials pls")
+    } else {
+        console.log("fuck this");
+    }
 
-    // make sure value wasn't empty
-    if (initials !== '') {
 
         //JSON.parse
         // get saved scores from localstorage (highscores), or if not any, set to empty array
@@ -146,23 +147,7 @@ function saveHighscore() {
         
 
         // redirect to next page
-        window.location.href = 'highscores.html';
+        window.location.href = 'scores.html';
     }
-}
-
-function checkForEnter(event) {
-    // "13" represents the enter key
-    if (event.key === 'Enter') {
-        saveHighscore();
-    }
-}
-
-// user clicks button to submit initials
-submitBtn.onclick = saveHighscore;
-
-// user clicks button to start quiz
-startBtn.onclick = startQuiz;
-// user clicks on element containing choices
 
 
-//initialsEl.onkeyup = checkForEnter;

@@ -9,7 +9,7 @@
   </head>
 
   <body>
-    <div class="scores" id="scores"><a href="highscores.html">View Scores</a></div>
+    <div class="scores" id="scores"><a href="scores.html">Scores</a></div>
 
     <div id="timerdiv">Time: <span id="time"></span></div>
 
@@ -35,6 +35,13 @@
           Enter initials: <input type="text" id="initials" max="3" />
           <button id="submit">Submit</button>
         </p>
+    </div>
+
+    <div id="scorediv">
+      <h1>Highscores</h1>
+      <ul id="highscores"></ul>
+      <button id="gohome">Back</button>
+      <button id="clear">Clear Highscores</button>
     </div>
 
     <script src="..\assets\logic.js"></script>
