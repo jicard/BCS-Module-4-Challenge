@@ -8,7 +8,7 @@ This project displays my working knowledge of more complex JavaScript in conjunc
 
 There are numerous examples of variables, DOM manipulation, event listeners, functions, creating HTML elements in JavaScript, creating CSS styling attributes in JavaScript, conditional statements, for loops, timer functiionality, writing to/from localstorage, and clearing localstorage data. 
 
-    ![Screenshot](./docs/assets/jicard.github.io_Javascript-Quiz-Game_index.html.png)
+![Screenshot](./docs/assets/jicard.github.io_Javascript-Quiz-Game_index.html.png)
 
 ## Usage
 
